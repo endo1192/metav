@@ -46,7 +46,7 @@ function main() {
         let Cube = null;
         
             // メッシュをロード
-        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "drumset2.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "drumset3.glb", scene).then((result) => {
             
             result.meshes.forEach((mesh) => {
                 console.log("Loaded mesh name:", mesh.name);
