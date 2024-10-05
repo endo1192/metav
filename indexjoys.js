@@ -16,7 +16,7 @@ function main() {
         let Cube = null;
 
         // メッシュを非同期でロード
-        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "sado5.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "./scene/", "sado5.glb", scene).then((result) => {
             result.meshes.forEach((mesh) => {
                 console.log("Loaded mesh name:", mesh.name);
             });
