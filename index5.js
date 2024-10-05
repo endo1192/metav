@@ -15,7 +15,7 @@ function main() {
         let Cube = null;
 
         // メッシュを非同期でロード
-        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "SBgll.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "SBglk.glb", scene).then((result) => {
             const primitives = [];
 
             for (let i = 0; i <= 252; i++) {

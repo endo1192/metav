@@ -16,7 +16,7 @@ function main() {
         let Cube = null;
         
             // メッシュを非同期でロード
-        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "keisado2.glb", scene).then((result) => {
+        BABYLON.SceneLoader.ImportMeshAsync("", "/scene/", "sado5.glb", scene).then((result) => {
             // 読み込まれたメッシュを取得
             result.meshes.forEach((mesh) => {
                 console.log("Loaded mesh name:", mesh.name);
@@ -26,21 +26,43 @@ function main() {
             if (!Cube) {
                 console.error("Cube mesh not found in the loaded scene.");
             }
+
+            for (let i = 1; i <= 6; i++) {
+                const meshName = `coli.00${i}`;
+                const mesh = result.meshes.find(mesh => mesh.name === meshName);
+                if (mesh) {
+                    mesh.checkCollisions = true;
+                }
+            }
         });
         
+
+        //Set gravity for the scene (G force like, on Y-axis)
+        scene.gravity = new BABYLON.Vector3(0, -0.9, 0);
 
         
         const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(3, 2, 0), scene);
 
         // Enable mouse wheel inputs.
         camera.inputs.addMouseWheel();
-    
+        camera.attachControl(canvas, true);
     
         camera.setTarget(BABYLON.Vector3.Zero());
 
     
         //camera.attachControl(true);
         camera.attachControl(canvas, true);
+
+        // Enable Collisions
+        scene.collisionsEnabled = true;
+
+        //Then apply collisions and gravity to the active camera
+        camera.checkCollisions = true;
+
+        //Set the ellipsoid around the camera (e.g. your player's size)
+        camera.ellipsoid = new BABYLON.Vector3(1,1,1);
+
+        camera.applyGravity = true;
 
 
         const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0), scene);
